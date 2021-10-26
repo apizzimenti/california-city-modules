@@ -20,8 +20,9 @@ for feature in gj["features"]:
     blkgrp = feature["properties"]["BlockGroup"]
     missing_col = False
 
-    # inc75
-    feature["properties"]["Inc75"] = feature["properties"]["Inc$75k+"]
+    # Re-name the income column *if* a renamed version doesn't already exist.
+    if not feature["properties"].get("Inc75", None):
+        feature["properties"]["Inc75"] = feature["properties"]["Inc$75k+"]
 
     # others
     for col in cols:
